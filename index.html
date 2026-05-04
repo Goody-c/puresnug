@@ -77,7 +77,7 @@
   </script>
 </head>
 <body>
-  <header class="header"><nav class="container nav"><a class="logo-wrap" href="#home"><div class="brand-mark">PURESNUG</div><div class="logo-text"><small>Gentle Care,<br>Pure Comfort</small></div></a><div class="nav-links"><a href="#home">Home</a><a href="#products">Products</a><a href="#about">About</a><a href="#why">Why PureSnug</a><a href="#contact">Contact</a></div><a class="btn btn-primary shop-btn scroll-link" href="#products" data-target="products" aria-label="Shop PureSnug baby diapers, wipes, sanitary pads and adult diapers">Shop Now 🛒</a><button class="menu-toggle" aria-label="Open menu" aria-expanded="false" type="button">☰</button></nav></header>
+  <header class="header"><nav class="container nav"><a class="logo-wrap" href="#home"><div class="brand-mark">PURESNUG</div><div class="logo-text"><small>Gentle Care,<br>Pure Comfort</small></div></a><div class="nav-links"><a class="scroll-link" href="#home" data-target="home">Home</a><a class="scroll-link" href="#products" data-target="products">Products</a><a class="scroll-link" href="#about" data-target="about">About</a><a class="scroll-link" href="#why" data-target="why">Why PureSnug</a><a class="scroll-link" href="#contact" data-target="contact">Contact</a></div><a class="btn btn-primary shop-btn scroll-link" href="#products" data-target="products" aria-label="Shop PureSnug baby diapers, wipes, sanitary pads and adult diapers">Shop Now 🛒</a><button class="menu-toggle" aria-label="Open menu" aria-expanded="false" type="button">☰</button></nav></header>
   <main id="home">
     <section class="hero"><div class="container hero-grid"><div class="hero-copy"><div class="eyebrow">Baby Diapers, Wipes, Sanitary Pads & Adult Diapers in Nigeria</div><h1>Gentle Care.<br>Pure Comfort.</h1><div class="gold-rule"></div><p>PureSnug provides soft, reliable family-care essentials for babies, moms, and adults across Nigeria.</p><div class="hero-actions"><a class="btn btn-primary scroll-link" href="#products" data-target="products">Shop Now ➜</a><a class="btn btn-outline scroll-link" href="#products" data-target="products">Explore Products</a></div><div class="hero-badges"><div class="hero-badge"><div class="circle-icon">🌿</div>Plant Based</div><div class="hero-badge"><div class="circle-icon">🛡️</div>Safe & Trusted</div><div class="hero-badge"><div class="circle-icon">💧</div>Gentle on Skin</div><div class="hero-badge"><div class="circle-icon">👪</div>Loved by Moms</div></div></div><div class="hero-visual"><div class="award"><span>★★★★★</span>Loved by<br>Moms<br>Nationwide</div><div class="hero-img-wrap"><img class="hero-img" src="https://images.unsplash.com/photo-1492725764893-90b379c2b6e7?auto=format&fit=crop&w=900&q=80" alt="Mother caring for baby with gentle family-care products" fetchpriority="high"></div><div class="quote-card">♡<br>Happy baby,<br>happy mom,<br>happy family.</div></div></div></section>
     <section class="section" id="products"><div class="container"><div class="section-title"><h2>PureSnug Product Range</h2><p>Shop baby diapers, baby wipes, sanitary pads, and adult diapers designed for gentle care and everyday confidence.</p></div><div class="products-grid" id="productGrid"></div><div class="feature-strip" id="about"><div class="feature-mini"><div class="circle-icon">🌿</div><div><h3>Plant Based</h3><p>Naturally derived ingredients that care for your family and the planet.</p></div></div><div class="feature-mini"><div class="circle-icon">🛡️</div><div><h3>Safe & Trusted</h3><p>Rigorously tested products you can trust, every day.</p></div></div><div class="feature-mini"><div class="circle-icon">💧</div><div><h3>Gentle on Skin</h3><p>Hypoallergenic and derma-friendly for sensitive skin.</p></div></div><div class="feature-mini"><div class="circle-icon">👪</div><div><h3>Loved by Moms</h3><p>Thoughtfully designed for real families, loved nationwide.</p></div></div></div></div></section>
@@ -100,7 +100,16 @@
         const targetId = link.dataset.target || link.getAttribute('href').replace('#', '');
         const target = document.getElementById(targetId);
         if (!target) return;
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        nav.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰';
+
+        if (targetId === 'home') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     });
     menuToggle.addEventListener('click', () => {
